@@ -15,10 +15,10 @@ def partition(A, left, right):
     # запускаем внешний цикл, который будет работать, пока указатели двигаются навстречу
     while i <= j:
         # перемещаем вперед указатель i (не забываем про границу массива!)
-        while A[i] < A[left] and i <= right:
-            i +=  1
+        while i <= right and A[i] < A[left]:
+            i += 1
         # перемещаем назад указатель j (не забываем про границу массива!)
-        while A[j] > A[left] and j > left:
+        while j > left and A[j] > A[left]:
             j -= 1
 
         # делаем проверки согласно алгоритму, меняем значения местами и двигаем указатели
@@ -33,7 +33,8 @@ def partition(A, left, right):
     A[left], A[j] = A[j], A[left]
     return j
 
-def quickSort(A, left = 0, right = None, verbose = False):
+
+def quickSort(A, left=0, right=None, verbose=False):
     # если параметр right == None, то это первый вызов и надо исправить его на реальное значение
     if right == None:
         right = len(A) - 1
@@ -46,17 +47,17 @@ def quickSort(A, left = 0, right = None, verbose = False):
     p = partition(A, left, right)
 
     # печатаем массив
-    print(A)
 
     # рекурсивно сортируем обе части
-    quickSort(A, left, p - 1)
-    quickSort(A, p + 1, right)
+
+    quickSort(A, left, p - 1, verbose=True)
+    quickSort(A, p + 1, right, verbose=True)
 
 
 # читаем список A (и возможно слово 'verbose' на второй строке)
 A = [3, 4, 6, 7, 1, 5, 2, 0]
 # вызываем quickSort
-quickSort(A)
+quickSort(A, verbose=True)
 
 """
 Прочитать слово verbose "обычным" способом не получится, т.к. в 80% тестов второй строки нет и ваша программа сломается при попытке ее чтения. Прочитать то, чего может и не быть, можно с помощью обработки исключений. Изучите и используйте код, приведенный ниже:
