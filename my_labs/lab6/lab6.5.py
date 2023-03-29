@@ -38,6 +38,8 @@ def quickSort(A, left=0, right=None, verbose=False):
     # если параметр right == None, то это первый вызов и надо исправить его на реальное значение
     if right == None:
         right = len(A) - 1
+        if left >= right:
+            print(' '.join(map(str, A)))
 
     # если массив пустой или состоит всего из одного элемента, заканчиваем
     if left >= right:
@@ -45,28 +47,38 @@ def quickSort(A, left=0, right=None, verbose=False):
 
     # производим разбиение с помощью partition
     p = partition(A, left, right)
-
     # печатаем массив
-
+    Ast = list(map(str, A))
+    if verbose:
+        if p - 1 < left:
+           Ast[p] =  '[] ' + Ast[p]
+        else:
+            Ast[left] = '[' + Ast[left]
+            Ast[p - 1] = Ast[p - 1] + ']'
+        if p + 1 > right:
+            if p + 1 <= len(Ast) - 1:
+                Ast[p] +=' []'
+            else:
+                Ast.append('[]')
+        else:
+            Ast[right] = Ast[right] + ']'
+            Ast[p + 1] = '[' + Ast[p + 1]
+        print(' '.join(Ast))
+    else:
+        print(' '.join(Ast))
     # рекурсивно сортируем обе части
 
-    quickSort(A, left, p - 1, verbose=True)
-    quickSort(A, p + 1, right, verbose=True)
+    quickSort(A, left, p - 1, verbose)
+    quickSort(A, p + 1, right, verbose)
 
 
 # читаем список A (и возможно слово 'verbose' на второй строке)
-A = [3, 4, 6, 7, 1, 5, 2, 0]
-# вызываем quickSort
-quickSort(A, verbose=True)
-
-"""
-Прочитать слово verbose "обычным" способом не получится, т.к. в 80% тестов второй строки нет и ваша программа сломается при попытке ее чтения. Прочитать то, чего может и не быть, можно с помощью обработки исключений. Изучите и используйте код, приведенный ниже:
-
+A = list(map(int, input().split()))
 try:
     verbose = input()
     if verbose == 'verbose':
         verbose = True
 except EOFError:
     verbose = False
-
-"""
+# вызываем quickSort
+quickSort(A, verbose= verbose)
