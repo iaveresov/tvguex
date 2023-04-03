@@ -52,12 +52,13 @@ def quickSort3Way(A, left = 0, right = None, verbose = False):
 
 
 # читаем список A (и возможно слово 'verbose' на второй строке)
-A = list(map(int, input().split()))
-try:
-    verbose = input()
-    if verbose == 'verbose':
-        verbose = True
-except EOFError:
-    verbose = False
-# вызываем quickSort3Way
-quickSort3Way(A, verbose=verbose)
+if __name__ == '__main__':
+    A = list(map(int, input().split()))
+    try:
+        verbose = input()
+        if verbose == 'verbose':
+            verbose = True
+    except EOFError:
+        verbose = False
+    # вызываем quickSort3Way
+    quickSort3Way(A, verbose=verbose)
