@@ -2,7 +2,7 @@ import unittest
 from unittest import main
 from my_labs.lab6.lab6_5 import partition
 from my_labs.lab6.lab6_5 import quickSort
-from my_labs.lab6.lab6_5 import quickSort
+
 
 
 class Test_quick_sort(unittest.TestCase):
