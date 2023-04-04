@@ -3,7 +3,10 @@ def quickSort3Way(A, left = 0, right = None, verbose = False):
     if right == None:
         right = len(A) - 1
         if left >= right:
-            print(' '.join(map(str, A)))
+            if __name__ == '__main__':
+                print(' '.join(map(str, A)))
+            else:
+                return
 
     # если массив пустой или состоит всего из одного элемента, заканчиваем
     if left >= right:
@@ -28,24 +31,25 @@ def quickSort3Way(A, left = 0, right = None, verbose = False):
 
 
     # печатаем массив в нужном формате
-    Ast = list(map(str, A))
-    if verbose:
-        if lt - 1 < left:
-           Ast[lt] =  '[] ' + Ast[lt]
-        else:
-            Ast[left] = '[' + Ast[left]
-            Ast[lt - 1] = Ast[lt - 1] + ']'
-        if gt + 1 > right:
-            if gt + 1 <= len(Ast) - 1:
-                Ast[gt] +=' []'
+    if __name__ == '__main__':
+        Ast = list(map(str, A))
+        if verbose:
+            if lt - 1 < left:
+               Ast[lt] =  '[] ' + Ast[lt]
             else:
-                Ast.append('[]')
+                Ast[left] = '[' + Ast[left]
+                Ast[lt - 1] = Ast[lt - 1] + ']'
+            if gt + 1 > right:
+                if gt + 1 <= len(Ast) - 1:
+                    Ast[gt] +=' []'
+                else:
+                    Ast.append('[]')
+            else:
+                Ast[right] = Ast[right] + ']'
+                Ast[gt + 1] = '[' + Ast[gt + 1]
+            print(' '.join(Ast))
         else:
-            Ast[right] = Ast[right] + ']'
-            Ast[gt + 1] = '[' + Ast[gt + 1]
-        print(' '.join(Ast))
-    else:
-        print(' '.join(Ast))
+            print(' '.join(Ast))
     # рекурсивно сортируем обе части (кроме той, что равна опорному элементу!)
     quickSort3Way(A, left, lt - 1, verbose)
     quickSort3Way(A, gt + 1, right, verbose)

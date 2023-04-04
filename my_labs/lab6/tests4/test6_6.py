@@ -14,13 +14,13 @@ class Test_qickSort3Way(TestCase):
         self.assertEqual(A, [1, 2, 3, 4, 5, 6])
 
 
-    def test_normal(self):
+    def test_normal1(self):
         A = [1, 1, 1, 2, 2, 1, 3, 0, 0,]
         quickSort3Way(A)
         self.assertEqual(A, [0, 0, 1, 1, 1, 1, 2, 2, 3])
 
 
-    def test_normal(self):
+    def test_normal2(self):
         A = [0, 100, 11, 1, 1, 23, 45, 63, 564, 1000]
         quickSort3Way(A)
         self.assertEqual(A, [0, 1, 1, 11, 23, 45, 63, 100, 564, 1000])

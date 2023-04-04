@@ -39,8 +39,10 @@ def quickSort(A, left=0, right=None, verbose=False):
     if right == None:
         right = len(A) - 1
         if left >= right:
-            print(' '.join(map(str, A)))
-
+            if __name__ == '__main__':
+                print(' '.join(map(str, A)))
+            else:
+                return
     # если массив пустой или состоит всего из одного элемента, заканчиваем
     if left >= right:
         return A
@@ -48,24 +50,25 @@ def quickSort(A, left=0, right=None, verbose=False):
     # производим разбиение с помощью partition
     p = partition(A, left, right)
     # печатаем массив
-    Ast = list(map(str, A))
-    if verbose:
-        if p - 1 < left:
-           Ast[p] =  '[] ' + Ast[p]
-        else:
-            Ast[left] = '[' + Ast[left]
-            Ast[p - 1] = Ast[p - 1] + ']'
-        if p + 1 > right:
-            if p + 1 <= len(Ast) - 1:
-                Ast[p] +=' []'
+    if __name__ == '__main__':
+        Ast = list(map(str, A))
+        if verbose:
+            if p - 1 < left:
+               Ast[p] =  '[] ' + Ast[p]
             else:
-                Ast.append('[]')
+                Ast[left] = '[' + Ast[left]
+                Ast[p - 1] = Ast[p - 1] + ']'
+            if p + 1 > right:
+                if p + 1 <= len(Ast) - 1:
+                    Ast[p] +=' []'
+                else:
+                    Ast.append('[]')
+            else:
+                Ast[right] = Ast[right] + ']'
+                Ast[p + 1] = '[' + Ast[p + 1]
+            print(' '.join(Ast))
         else:
-            Ast[right] = Ast[right] + ']'
-            Ast[p + 1] = '[' + Ast[p + 1]
-        print(' '.join(Ast))
-    else:
-        print(' '.join(Ast))
+            print(' '.join(Ast))
     # рекурсивно сортируем обе части
 
     quickSort(A, left, p - 1, verbose)
