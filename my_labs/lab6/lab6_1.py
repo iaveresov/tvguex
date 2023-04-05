@@ -28,6 +28,7 @@ def merge(A, left, mid, right):
     # Возвращаем назад в массив A результат нашей работы (обратите внимание на присваивание срезу!)
     A[left:right + 1] = AUX
 
+
 # читаем массив A, массив B, склеиваем их
 A1 = list(map(int, input().split()))
 A2 = list(map(int, input().split()))
