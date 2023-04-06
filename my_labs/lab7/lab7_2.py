@@ -31,3 +31,8 @@ def interpolSearchRec(A, elem, lo, hi, string=None):
     else:
         string.append(str(A[mid]))
         return interpolSearchRec(A, elem, mid + 1, hi, string)
+
+if __name__ == '__main__':
+    elem = int(input())
+    A = list(map(int, input().split()))
+    print(interpolSearch(A, elem))
