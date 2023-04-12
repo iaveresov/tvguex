@@ -6,21 +6,25 @@ class MyQueue:
         self.tail = -1
         self.full = False
 
+
     def __str__(self):
         return str(self.mas)
+
+
     # метод добавления элемента в очередь
     def enqueue(self, x):
-        if (self.tail + 1) % 10 == self.head and self.tail > 0:
-            self.full == True
+        if (self.tail + 1) % 10 == self.head and self.tail != -1:
+            self.full = True
             return False
         self.tail = (self.tail + 1) % 10
         self.mas[self.tail] = x
         return True
 
+
     # метод удаления элемента из очереди
     def dequeue(self):
-        if (self.head - 1) % 10 == self.tail:
-            self.full = False
+        self.full = False
+        if self.head == (self.tail + 1) % 10 and self.full == False:
             return None
         a = self.mas[self.head]
         self.mas[self.head] = None
@@ -29,7 +33,7 @@ class MyQueue:
 
     # метод для определения, пуста ли очередь
     def isEmpty(self):
-        if self.tail < self.head
+        if self.full == False and (self.head - 1) % 10 == self.tail:
             return True
         return False
 
@@ -68,8 +72,8 @@ print(A.dequeue())
 print(A.dequeue())
 """
 A = MyQueue()
-A.enqueue(1)
-A.enqueue(2)
-print(A)
-print(A.dequeue())
-print(A)
+for i in range(10):
+    A.enqueue(i)
+for i in range(9):
+    A.dequeue()
+    print(A)
