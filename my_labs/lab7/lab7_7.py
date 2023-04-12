@@ -33,34 +33,12 @@ class Item:
         return str(self.data)
 
 
-    def __eq__(self, other):
-        return self.data == other
-
-
-    def __gt__(self, other):
-        return self.data > other
-
-
-    def __ge__(self, other):
-        return self.data >= other
-
-
-    def __lt__(self, other):
-        return self.data < other
-
-
-    def __le__(self, other):
-        return self.data <= other
-
-    def __ne__(self, other):
-        return self.data != other
-
-
 class MyList:
     # конструктор, который корректно инициализирует голову и хвост списка
     def __init__(self):
         self.head = Item()
         self.tail = self.head
+
 
     def get_head(self):
         return self.head
@@ -69,6 +47,8 @@ class MyList:
     def get_tail(self):
         return self.tail
 
+    def set_tail(self, tail):
+        self.tail = tail
 
     # метод добавления элемента в конец списка
     def append(self, x):
@@ -185,20 +165,29 @@ class MyList:
 
     # реализуйте перегрузку индексации на чтение
     def __getitem__(self, idx):
-        if idx > self.__len__() or idx < 0 or self.__len__() == 0:
+        if idx >= self.__len__() or idx < 0 or self.__len__() == 0:
             raise Exception('Неверно задан индекс')
         a = self.head.get_next()
         num = 0
         while a != None:
             if idx == num:
-                return a
+                return a.get_data()
             num += 1
             a = a.get_next()
 
 
     # реализуйте перегрузку индексации на запись
     def __setitem__(self, idx, x):
-        self.__getitem__(idx).set_data(x)
+        if idx >= self.__len__() or idx < 0 or self.__len__() == 0:
+            raise Exception('Неверно задан индекс')
+        a = self.head.get_next()
+        num = 0
+        while a != None:
+            if idx == num:
+                a.set_data(x)
+                return
+            num += 1
+            a = a.get_next()
 
     # реализуйте перегрузку метода in (может можно воспользоваться уже реализованным find?)
     def __contains__(self, item):
@@ -228,7 +217,8 @@ class MyList:
         while item_other != None:
             self.append(item_other.get_data())
             item_other = item_other.get_next()
-        other = MyList
+        other.get_head().set_next(None)
+        other.set_tail(other.get_head())
 
 
     # метод, возвращающий итератор, мы написали за вас. Вам осталось только дописать сам класс итератора
@@ -254,55 +244,45 @@ class MyListIterator:
 
 # Этот код менять не нужно. При корректной реализации класса MyList он должен выдать корректный результат
 # Раскомментируйте этот код, когда перестанете получать сообщения об ошибках
-"""""
-A = MyList()
-A.append(1)
-A.pushFirst(3)
-A.append(5)
-A.append(1)
-A.pushFirst(5)
-print(A)
-print(A.popFirst())
-print(A.pop())
-print(A)
-print(len(A))
-if (1 in A):
-	print("True")
-else:
-    print("False")
-if (2 in A):
-	print("True")
-else:
-    print("False")
-for i in range(6,10):
-    A.append(i)
-A[0] = 0
-A[4] = -1
-for i in range(len(A)):
-    print(A[i])
-for i in A:
-	print(i)
-A.remove(A.find(-1))
-print(A)
-B = MyList()
-for i in range(6):
-	B.append(i)
-A = A + B
-A.append(100)
-B[0] = 100
-print(A)
-print(B)
-A.concat(B)
-A.append(100)
-print(A)
-print(B)
-"""
-B = MyList()
-print(len(B))
-B.append(1)
-print(len(B))
-B.append(2)
-B.append(3)
-print(B)
-print(B[2])
-print(1 in B)
+if __name__ == '__main__':
+    A = MyList()
+    A.append(1)
+    A.pushFirst(3)
+    A.append(5)
+    A.append(1)
+    A.pushFirst(5)
+    print(A)
+    print(A.popFirst())
+    print(A.pop())
+    print(A)
+    print(len(A))
+    if (1 in A):
+        print("True")
+    else:
+        print("False")
+    if (2 in A):
+        print("True")
+    else:
+        print("False")
+    for i in range(6,10):
+        A.append(i)
+    A[0] = 0
+    A[4] = -1
+    for i in range(len(A)):
+        print(A[i])
+    for i in A:
+        print(i)
+    A.remove(A.find(-1))
+    print(A)
+    B = MyList()
+    for i in range(6):
+        B.append(i)
+    A = A + B
+    A.append(100)
+    B[0] = 100
+    print(A)
+    print(B)
+    A.concat(B)
+    A.append(100)
+    print(A)
+    print(B)
