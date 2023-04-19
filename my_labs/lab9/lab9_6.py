@@ -24,8 +24,12 @@ def dfs_pref(v, matrix, lst=None, string = None):
 
 if __name__ == '__main__':
     matrix = []
-    N = int(input())
+    param = list(map(int, input().split()))
+    v = param[0]
+    N = param[1]
     for i in range(N):
         matrix.append(list(map(int, input().split())))
-    print(dfs_pref(0, matrix))
-    print(dfs_post(0, matrix))
+    pref = dfs_pref(v, matrix)
+    post = dfs_post(v, matrix)
+    print(' '.join(list(map(str, pref))))
+    print(' '.join(list(map(str, post))))
