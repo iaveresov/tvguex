@@ -38,7 +38,7 @@ def make_graph(edges):
 
 def prefix(tree, root, lst=None):
     if tree == {}:
-        return ''
+        return
     if len(tree) == 1 and tree[root] == None:
         return [root]
     if lst == None:
@@ -52,7 +52,7 @@ def prefix(tree, root, lst=None):
 
 def postfix(tree, root, root_prev= None, lst=None,):
     if tree == {}:
-        return ''
+        return
     if len(tree) == 1 and tree[root] == None:
         return [root]
     if lst == None:
@@ -66,7 +66,6 @@ def postfix(tree, root, root_prev= None, lst=None,):
 
 
 if __name__ == '__main__':
-    root = int(input())
     string = []
     for i in stdin:
         if i == '\n':
@@ -75,7 +74,7 @@ if __name__ == '__main__':
     string = ' '.join(string)
     string = makeEdges(string)
     tree = make_graph(string)
-    pref = prefix(tree, root)
-    post = postfix(tree, root)
+    pref = prefix(tree, 1)
+    post = postfix(tree, 1)
     print(' '.join(map(str, pref)))
     print(' '.join(map(str, post)))
