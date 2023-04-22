@@ -10,6 +10,8 @@ class Node:
 
 
     def __str__(self):
+        if self.data is None:
+            return '()'
         if self.left is None:
             self.left = '()'
         if self.right is None:
@@ -59,21 +61,15 @@ def parse_tree(string: str) -> Node:
         return Node(None)
 
 
-def traversal(tree: Node) -> Union[list[str, ...], str]:
-    if tree is None:
-        return '()'
-    if tree.get_data() is None:
-        return '()'
-    string = f'({tree.get_data()} {traversal(tree.get_left())} {traversal(tree.get_right())}'
-    return string
-
+def main(string):
+    ops = shutting_yard(string)
+    tree = parse_tree(ops)
+    return tree
 
 
 if __name__ == '__main__':
     string = input()
-    ops = shutting_yard(string)
-    tree = parse_tree(ops)
-    print(tree)
+    print(main(string))
 
 
 
