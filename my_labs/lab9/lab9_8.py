@@ -13,10 +13,10 @@ class Node:
         if self.data is None:
             return '()'
         if self.left is None:
-            self.left = '()'
+            return f'({self.data} () ())'
         if self.right is None:
-            self.right = '()'
-        return f'({self.data} {self.right} {self.left})'
+            return '()'
+        return f'({self.data} {str(self.right)} {str(self.left)})'
 
 
     def get_data(self):
