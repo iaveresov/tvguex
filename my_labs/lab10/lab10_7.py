@@ -18,7 +18,7 @@ def min_son(p: int, heap: list[int, ...], lenght: int) -> int:
     if l > tail:
         return -1
     if l < tail and r <= tail:
-        minim: int = min(heap[l], heap[r])
+        minim = min(heap[l], heap[r])
         if heap[l] == minim:
             return l
         else:
@@ -32,8 +32,6 @@ def sift_down(heap: list[int, ...], p: int) -> None:
     # пока мы не в листе и текущий элемент больше минимального из сыновей,
     # меняем их местами и погружаемся ниже
     while minCh > 0 and heap[minCh] < heap[p]:
-        heap[minCh]: int
-        heap[p]: int
         heap[minCh], heap[p] = heap[p], heap[minCh]
         p: int = minCh
         minCh: int = min_son(p, heap, lenght)

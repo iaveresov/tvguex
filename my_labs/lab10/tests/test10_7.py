@@ -14,7 +14,12 @@ class Test(unittest.TestCase):
         self.assertEqual(heap, [1, 2, 4, 6, 5, 10, 21, 6, 7, 8, 10, 11, 23, 24, 25])
 
 
-    def test_positive(self):
+    def test_positive3(self):
         heap = [1, 2, 4, 6, 5, 10, 24, 6, 7, 8, 10, 11, 23, 21]
+        sift_down(heap, 6)
+        self.assertEqual(heap, [1, 2, 4, 6, 5, 10, 21, 6, 7, 8, 10, 11, 23, 24])
+
+    def test_positive4(self):
+        heap = [1, 2, 4, 6, 5, 10, 21, 6, 7, 8, 10, 11, 23, 24]
         sift_down(heap, 6)
         self.assertEqual(heap, [1, 2, 4, 6, 5, 10, 21, 6, 7, 8, 10, 11, 23, 24])
