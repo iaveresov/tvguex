@@ -18,3 +18,8 @@ class Test_shift_up(unittest.TestCase):
         heap = [5, 10, 11, 12, 14, 20, 21, 14, 16, 15, 15]
         shift_up(heap, 10)
         self.assertEqual(heap, [5, 10, 11, 12, 14, 20, 21, 14, 16, 15, 15])
+
+    def test_positive4(self):
+        heap = [5, 10, 11, 12, 9, 20, 21, 14, 16, 15, 15]
+        shift_up(heap, 4)
+        self.assertEqual(heap, [5, 9, 11, 12, 10, 20, 21, 14, 16, 15, 15])
