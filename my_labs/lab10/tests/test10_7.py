@@ -1,25 +1,25 @@
 import unittest
-from my_labs.lab10.lab10_7 import left_son, right_son, min_son, sift_down
+from my_labs.lab10.lab10_7 import parent, shift_up
 
 
-class Test(unittest.TestCase):
+class Test_shift_up(unittest.TestCase):
     def test_positive1(self):
-        heap = [15, 10, 11, 13, 11, 14, 26, 16, 17, 14]
-        sift_down(heap, 0)
-        self.assertEqual(heap, [10, 11, 11, 13, 14, 14, 26, 16, 17, 15])
+        heap = [5, 10, 11, 12, 14, 20, 21, 14, 16, 15, 10]
+        shift_up(heap, 10)
+        self.assertEqual(heap, [5, 10, 11, 12, 10, 20, 21, 14, 16, 15, 14])
 
-    def test_postitive2(self):
-        heap = [1, 2, 4, 6, 5, 10, 24, 6, 7, 8, 10, 11, 23, 21, 25]
-        sift_down(heap, 6)
-        self.assertEqual(heap, [1, 2, 4, 6, 5, 10, 21, 6, 7, 8, 10, 11, 23, 24, 25])
 
+    def test_positive2(self):
+        heap = [5, 10, 11, 12, 14, 20, 21, 14, 16, 15, 3]
+        shift_up(heap, 10)
+        self.assertEqual(heap, [3, 5, 11, 12, 10, 20, 21, 14, 16, 15, 14])
 
     def test_positive3(self):
-        heap = [1, 2, 4, 6, 5, 10, 24, 6, 7, 8, 10, 11, 23, 21]
-        sift_down(heap, 6)
-        self.assertEqual(heap, [1, 2, 4, 6, 5, 10, 21, 6, 7, 8, 10, 11, 23, 24])
+        heap = [5, 10, 11, 12, 14, 20, 21, 14, 16, 15, 15]
+        shift_up(heap, 10)
+        self.assertEqual(heap, [5, 10, 11, 12, 14, 20, 21, 14, 16, 15, 15])
 
     def test_positive4(self):
-        heap = [1, 2, 4, 6, 5, 10, 21, 6, 7, 8, 10, 11, 23, 24]
-        sift_down(heap, 6)
-        self.assertEqual(heap, [1, 2, 4, 6, 5, 10, 21, 6, 7, 8, 10, 11, 23, 24])
+        heap = [5, 10, 11, 12, 9, 20, 21, 14, 16, 15, 15]
+        shift_up(heap, 4)
+        self.assertEqual(heap, [5, 9, 11, 12, 10, 20, 21, 14, 16, 15, 15])

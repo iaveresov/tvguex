@@ -60,7 +60,6 @@ def parse_tree(string: str) -> Node:
     else:
         return Node(None)
 
-
 def main(string):
     ops = shutting_yard(string)
     tree = parse_tree(ops)
