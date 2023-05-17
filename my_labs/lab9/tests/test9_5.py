@@ -7,6 +7,10 @@ from my_labs.lab9.lab9_5 import postfix
 
 class Test_pr_ps(unittest.TestCase):
     def test_pref_normal(self):
+        string  = '1 1 2 3 1'
+        edges = makeEdges(string)
+        tree = make_graph(edges)
+    def test_pref_normal(self):
         string = '1 2 2 3 2 5 5 9 9 7 7 6 7 8 9 10'
         edges = makeEdges(string)
         tree = make_graph(edges)

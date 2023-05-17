@@ -21,7 +21,7 @@ class Heap:
         # и целочисленного деления в Питоне! протестируйте свой метод!)
         return max(0, round((p - 1) // 2))
 
-    def min_son(self, p: int, lenght=None) -> int:
+    def min_son(self, p: int) -> int:
         # возвращаем индекс минимального сына элемента p или -1, если p - лист
         lenght = len(self.heap)
         l: int = self.left_son(p)

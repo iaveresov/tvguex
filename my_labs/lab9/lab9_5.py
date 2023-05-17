@@ -27,6 +27,7 @@ def make_graph(edges):
     for edge in edges:
         if edge[0] not in dict:
             dict[edge[0]] = [edge[1]]
+            if d
             dict[edge[1]] = [edge[0]]
         else:
             dict[edge[0]].append(edge[1])
@@ -66,15 +67,11 @@ def postfix(tree, root, root_prev= None, lst=None,):
 
 
 if __name__ == '__main__':
-    string = []
-    for i in stdin:
-        if i == '\n':
-            break
-        string.append(i.rstrip('\n'))
-    string = ' '.join(string)
-    string = makeEdges(string)
-    tree = make_graph(string)
-    pref = prefix(tree, 1)
-    post = postfix(tree, 1)
-    print(' '.join(map(str, pref)))
-    print(' '.join(map(str, post)))
+    root = 1
+    string = '1 2 3 1'
+    edges = makeEdges(string)
+    graph = make_graph(edges)
+    answ1 = prefix(graph, root)
+    answ2 = postfix(graph, root)
+    print(answ1)
+    print(answ2)
