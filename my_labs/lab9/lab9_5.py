@@ -27,8 +27,7 @@ def make_graph(edges):
     for edge in edges:
         if edge[0] not in dict:
             dict[edge[0]] = [edge[1]]
-            if d
-            dict[edge[1]] = [edge[0]]
+            dict.setdefault(edge[1], edge[0])
         else:
             dict[edge[0]].append(edge[1])
             if edge[1] in dict:
