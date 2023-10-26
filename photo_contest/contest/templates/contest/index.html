@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> nametest </title>
+    </head>
+    <body>
+    <h1>Names of artists</h1>
+    {% if names %}
+        <ul>
+            {% for name in names %}
+            <li> {{name}} </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No names added</p>
+    {% endif %}
+    </body>
+</html>
