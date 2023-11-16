@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import MyName
-
 
 def index(request):
 
@@ -12,5 +10,3 @@ def index(request):
         context=
         {'names': names},
     )
-
-def login(request, login, password)

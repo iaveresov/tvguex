@@ -1,42 +1,71 @@
 from django.db import models
+from django.contrib.auth.models import (
+    BaseUserManager, AbstractBaseUser
+)
 
+class User(AbstractBaseUser):
+    email = models.EmailField(
+        verbose_name='email_adress',
+        max_length=255,
+        unique=True,
+    )
+    is_active = models.BooleanField(default=True)
+    staff = models.BooleanField(default=False)
 
-class MyName(models.Model):
-    name = models.CharField(max_length=200)
+    USERNAME_FIELD =  'email'
+    REQUIRED_FIELDS = []
 
-    def __str__(self):
-        return self.name
+    def get_full_name(self):
+        return self.email
 
-
-class User(models.Model):
-
-    user_name = models.CharField(max_length=30, help_text='name of user-participant')
-    user_password = models.CharField(max_lenght=8, help_text="user's password")
-
-    def __str__(self):
-        return self.user_name
-    '''
-    user_stand = models.ForeignKey('Stand', on_delete=models.SET_NULL, null=True)
-    comment = models.ForeignKey('Comment', on_delete=models.SET_NULL, null=True)
-
-    
-
-class Stand(models.Model):
-    stand_name = models.CharField(max_length=30, help_text='name of user who stand his photo')
-    photo = models.ImageField(upload_to='uploads/')
-    comment = models.ForeignKey('Comment', on_delete=models.SET_NULL, null=True, blank=True)
-    likes = models.ForeignKey('Like', on_delete=models.SET_NULL, null=True, default=0)
-    user = models.ForeignKey('User')
+    def get_short_name(self):
+        self.email
 
     def __str__(self):
-        return self.stand_name
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
+    @property
+    def is_staff(self):
+        return self.admin
+
+    @property
+    def is_admin(self):
+        return self.admin
 
 
-class Comment(models.Model):
-    comment_text = models.TextField(max_length=1000, help_text='text_of_comment')
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None):
+        if not email:
+            raise ValueError('Users must have an email adress')
+        user = self.model(
+            email=self.normalize_email(email)
+        )
 
-    def __str__(self):
-        return self.comment_text
+        user.set_password(password)
+        user.save(using=self.db)
+        return user
 
-class Like(models.Model):
-'''
+    def create_staffuser(self,email, password):
+        user = self.create_user(
+            email,
+            password=password,
+        )
+        user.staff = True
+        user.save(using=self.db)
+        return user
+
+    def create_superuser(self,email, password):
+        user = self.create_user(
+            email,
+            password=password,
+        )
+        user.staff = True
+        user.admin = True
+        user.save(using=self.db)
+        return user
