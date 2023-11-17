@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('contest/', include('contest.urls')),
     path('', RedirectView.as_view(url='/contest/', permanent=True)),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]
