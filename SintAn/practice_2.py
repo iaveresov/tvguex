@@ -213,7 +213,7 @@ class SAR:
                 return True
             else: return False
         else:
-            return('Error: uncorrect re')
+            return('Error: incorrect re')
 
     def e_closure(self, T):
         stack = list(T)

@@ -76,13 +76,7 @@ class SA:
         self.inp = inp
         self.len = len(inp)
         self.result = self.expr()
-        if self.result :
-            if self.i == self.len :
-                print("OK")
-            else:
-                print("Fail")
-        else:
-            print("Fail")
+
 
 def make_operation(stack, operation):
     try:
@@ -117,7 +111,7 @@ def calculate_ops(ops):
 
 # считываем строку и делим ее на лексемы
 sa = SA()
-sa.pars('(2+3)*(4-2)')
+sa.pars('(2+3)*(5-2)')
 
 # вычисляем результат и печатаем его
 print(calculate_ops(sa.get_opz()))
