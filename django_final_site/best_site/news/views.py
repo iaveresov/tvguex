@@ -8,6 +8,7 @@ def news_home(request):
     return render(request, 'news/news_home.html', {'news': news})
 
 def create(request):
+    error = ''
     if request.method == 'POST':
         form = ArticlesForm(request.POST)
         if form.is_valid():
